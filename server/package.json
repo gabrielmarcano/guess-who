@@ -1,5 +1,5 @@
 {
-  "name": "guess-who",
+  "name": "guess-who-server",
   "version": "0.0.0",
   "private": true,
   "type": "module",
