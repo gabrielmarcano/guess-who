@@ -6,8 +6,8 @@
 
  import "reflect-metadata";
  import app from "./app";
- var debug = require("debug")("socketio-server:server");
- import * as http from "http";
+ var debug = require("debug")("guess-who:server");
+ import http from "http";
  import socketServer from "./socket";
  
  /**
