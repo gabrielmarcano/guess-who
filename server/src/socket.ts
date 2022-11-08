@@ -8,11 +8,11 @@ export default (httpServer) => {
     },
   })
 
-  // io.on('connection', (socket) => {
+  io.on('connection', (socket) => {
+    console.log('New socket connected: ', socket.id)
+  })
 
-  // })
-
-  useSocketServer(io, { controllers: [__dirname + '/api/controllers/*.ts'] })
+  // useSocketServer(io, { controllers: [__dirname + "/api/controllers/*.ts"] })
 
   return io
 }
