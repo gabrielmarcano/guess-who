@@ -1,25 +1,26 @@
 import { useEffect, useState } from 'react'
 import { io } from 'socket.io-client'
+import { JoinRoom } from './components/joinRoom'
+import socketService from './services/socketService'
 
 function App() {
-  const connect = () => {
-    const socket = io('http://localhost:9000')
 
-    socket.on('connect', () => {
-      socket.emit("custom_event", {
-        name: "Gabriel",
-        age: 22
-      })
+  const connectSocket = async () => {
+    const socket = socketService.connect("http://localhost:9000").catch((err) => {
+      console.error("Error: ", err)
     })
   }
 
   useEffect(() => {
-    connect()
+    connectSocket()
   }, [])
 
   return (
-    <div className="text-center">
+    <div className="flex flex-col justify-center items-center">
       <h1 className='underline text-4xl'>Guess Who Game</h1>
+      <div>
+        <JoinRoom></JoinRoom>
+      </div>
     </div>
   )
 }
