@@ -10,6 +10,10 @@ export class MainController {
     @SocketIO() io: Server
   ) {
     console.log('New socket connected: ', socket.id)
+
+    socket.on('custom_event', (data: any) => {
+      console.log('Data: ', data)
+    })
   }
 
 }
