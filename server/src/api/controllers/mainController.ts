@@ -1,8 +1,8 @@
-import { ConnectedSocket, OnConnect, SocketController, SocketIO } from "socket-controllers";
-import { Server, Socket } from "socket.io";
+import { ConnectedSocket, OnConnect, SocketController, SocketIO } from "socket-controllers"
+import { Server, Socket } from "socket.io"
 
 @SocketController()
-class MainController {
+export class MainController {
 
   @OnConnect()
   public onConnection(
