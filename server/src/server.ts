@@ -24,14 +24,18 @@ app.set("port", port);
 var server = http.createServer(app);
 
 /**
+ * Create Socket Server
+ */
+
+socketServer(server);
+
+/**
  * Listen on provided port, on all network interfaces.
  */
 
 server.listen(port, '192.168.0.129');
 server.on("error", onError);
 server.on("listening", onListening);
-
-const io = socketServer(server);
 
 /**
  * Normalize a port into a number, string, or false.

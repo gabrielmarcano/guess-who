@@ -1,22 +1,16 @@
-import { useSocketServer } from 'socket-controllers'
 import { Server } from 'socket.io'
-import { MainController } from './api/controllers/mainController'
-import { RoomController } from './api/controllers/roomController'
+import type http from 'http'
 
-export default (httpServer) => {
+export default (httpServer: http.Server) => {
   const io = new Server(httpServer, {
     cors: {
       origin: '*'
     },
   })
 
-  // io.on('connection', (socket) => {
-  //   console.log('New socket connected: ', socket.id)
-  // })
-
-  // useSocketServer(io, { controllers: [__dirname + "/api/controllers/*.ts"] })
-
-  useSocketServer(io, { controllers: [MainController, RoomController] })
+  io.on('connection', (socket) => {
+    console.log('New socket connected: ', socket.id)
+  })
 
   return io
 }

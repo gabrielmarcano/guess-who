@@ -1,19 +1,22 @@
 import { useEffect, useState } from 'react'
 import { JoinRoom } from './components/joinRoom'
 import GameContext, { IGameContextProps } from './gameContext'
-import socketService from './services/socketService'
+import { io } from 'socket.io-client'
+import type { Socket } from 'socket.io-client'
 
 function App() {
+  const [socket, setSocket] = useState<Socket>()
+
   const [isInRoom, setIsInRoom] = useState(false)
 
-  const connectSocket = async () => {
-    const socket = socketService.connect("http://192.168.0.129:9000").catch((err) => {
-      console.error("Error: ", err)
-    })
-  }
-
   useEffect(() => {
-    connectSocket()
+    const s = io("http://192.168.0.129:9000")
+
+    setSocket(s)
+
+    return () => {
+      s.disconnect()
+    }
   }, [])
 
   const gameContextValue: IGameContextProps = {
