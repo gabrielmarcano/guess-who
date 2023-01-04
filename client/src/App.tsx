@@ -10,7 +10,7 @@ function App() {
   const [isInRoom, setIsInRoom] = useState(false)
 
   useEffect(() => {
-    const s = io("http://192.168.0.129:9000")
+    const s = io(`${import.meta.env.VITE_SERVER_IP}:9000`)
 
     setSocket(s)
 

@@ -33,7 +33,7 @@ socketServer(server);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, '192.168.0.129');
+server.listen(port, process.env.IP);
 server.on("error", onError);
 server.on("listening", onListening);
 
