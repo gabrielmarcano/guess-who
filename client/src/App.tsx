@@ -4,19 +4,23 @@ import GameContext, { IGameContextProps } from './gameContext'
 import { io } from 'socket.io-client'
 import type { Socket } from 'socket.io-client'
 
+import socketService from './services/socketService'
+
 function App() {
   const [socket, setSocket] = useState<Socket>()
 
   const [isInRoom, setIsInRoom] = useState(false)
 
   useEffect(() => {
-    const s = io(`${import.meta.env.VITE_SERVER_IP}:9000`)
+    // const s = io(`${import.meta.env.VITE_SERVER_IP}:9000`)
 
-    setSocket(s)
+    // setSocket(s)
 
-    return () => {
-      s.disconnect()
-    }
+    // return () => {
+    //   s.disconnect()
+    // }
+
+    const s = socketService.connect(`${import.meta.env.VITE_SERVER_IP}:9000`).then(res => setSocket(res))
   }, [])
 
   const gameContextValue: IGameContextProps = {
@@ -28,7 +32,7 @@ function App() {
     <GameContext.Provider value={gameContextValue}>
       <div className="flex flex-col justify-center items-center">
         <h1 className='mt-5 underline text-4xl'>Guess Who Game</h1>
-        <JoinRoom></JoinRoom>
+        {socket ? <JoinRoom></JoinRoom> : "Waiting for connection..."}
       </div>
     </GameContext.Provider>
   )
