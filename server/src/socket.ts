@@ -9,8 +9,19 @@ export default (httpServer: http.Server) => {
   })
 
   io.on('connection', (socket) => {
-    console.log('New socket connected: ', socket.id)
+    console.log('Socket connected: ', socket.id)
+
+    socket.on('disconnect', () => {
+      console.log('Socket disconnected: ', socket.id)
+    })
+    
+    socket.on('join_game', (roomId, callback) => {
+      socket.join(roomId)
+      console.log(`Socket ${socket.id} joined to ${roomId}`)
+      socket.emit("room_joined")
+    })
   })
+
 
   return io
 }
