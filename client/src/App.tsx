@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { JoinRoom } from './components/JoinRoom'
-import GameContext, { IGameContextProps } from './gameContext'
-import { io } from 'socket.io-client'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import type { Socket } from 'socket.io-client'
 
+import Home from './components/Home'
+import GameContext, { IGameContextProps } from './gameContext'
 import socketService from './services/SocketService'
 
 function App() {
@@ -12,15 +12,13 @@ function App() {
   const [isInRoom, setIsInRoom] = useState(false)
 
   useEffect(() => {
-    // const s = io(`${import.meta.env.VITE_SERVER_IP}:9000`)
+    socketService.connect(`${import.meta.env.VITE_SERVER_IP}:9000`)
 
-    // setSocket(s)
+    if (socketService.socket) setSocket(socketService.socket)
 
-    // return () => {
-    //   s.disconnect()
-    // }
-
-    const s = socketService.connect(`${import.meta.env.VITE_SERVER_IP}:9000`).then(res => setSocket(res))
+    return () => {
+      socketService.disconnect()
+    }
   }, [])
 
   const gameContextValue: IGameContextProps = {
@@ -29,12 +27,16 @@ function App() {
   }
 
   return (
-    <GameContext.Provider value={gameContextValue}>
-      <div className="flex flex-col justify-center items-center">
-        <h1 className='mt-5 underline text-4xl'>Guess Who Game</h1>
-        {socket ? <JoinRoom></JoinRoom> : "Waiting for connection..."}
+    <BrowserRouter>
+      <div>
+        <GameContext.Provider value={gameContextValue}>
+          <Routes>
+            <Route path="/" element={<Home />}></Route>
+            {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
+          </Routes>
+        </GameContext.Provider>
       </div>
-    </GameContext.Provider>
+    </BrowserRouter>
   )
 }
 
