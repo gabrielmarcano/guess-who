@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { JoinRoom } from './components/joinRoom'
+import { JoinRoom } from './components/JoinRoom'
 import GameContext, { IGameContextProps } from './gameContext'
 import { io } from 'socket.io-client'
 import type { Socket } from 'socket.io-client'
 
-import socketService from './services/socketService'
+import socketService from './services/SocketService'
 
 function App() {
   const [socket, setSocket] = useState<Socket>()
