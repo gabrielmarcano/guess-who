@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react"
 import gameContext from "../gameContext"
-import gameService from "../services/GameService"
-import socketService from "../services/SocketService"
+import GameService from "../services/GameService"
+import SocketService from "../services/SocketService"
 
 interface IJoinRoomProps { }
 
-export function JoinRoom(props: IJoinRoomProps) {
+export default function JoinRoom(props: IJoinRoomProps) {
 
   const [inputValue, setInputValue] = useState('')
   const [roomName, setRoomName] = useState('')
@@ -21,13 +21,13 @@ export function JoinRoom(props: IJoinRoomProps) {
   const joinRoom = async (e: React.FormEvent) => {
     e.preventDefault()
 
-    const socket = socketService.socket
+    const socket = SocketService.socket
 
     if (!inputValue || inputValue.trim() === '' || !socket) return
 
     setIsJoining(true)
 
-    const joined = await gameService.joinGameRoom(socket!, inputValue).catch((err) => {
+    const joined = await GameService.joinGameRoom(socket!, inputValue).catch((err) => {
       alert(err)
     })
 
