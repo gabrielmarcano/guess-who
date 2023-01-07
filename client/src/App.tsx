@@ -31,7 +31,7 @@ function App() {
       <div>
         <GameContext.Provider value={gameContextValue}>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" element={<Home isLoading={!socket} />}></Route>
             {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
           </Routes>
         </GameContext.Provider>
