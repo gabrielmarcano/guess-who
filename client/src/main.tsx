@@ -1,6 +1,11 @@
 import ReactDOM from 'react-dom/client'
 import App from './App'
+
+// CSS for tailwind
 // import './styles.css'
+
+// CSS for bootstrap
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 /**
  * Strict Mode
