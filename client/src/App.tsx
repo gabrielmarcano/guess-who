@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import type { Socket } from 'socket.io-client'
 
 import Home from './components/Home'
@@ -23,7 +23,7 @@ function App() {
 
   const gameContextValue: IGameContextProps = {
     isInRoom,
-    setIsInRoom
+    setIsInRoom,
   }
 
   return (
