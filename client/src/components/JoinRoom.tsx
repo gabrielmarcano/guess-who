@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import gameContext from '../gameContext'
-import GameService from '../services/GameService'
-import SocketService from '../services/SocketService'
+import gameContext from '@/gameContext'
+import GameService from '@/services/GameService'
+import SocketService from '@/services/SocketService'
 
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'

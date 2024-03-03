@@ -2,9 +2,9 @@ import { useEffect, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import type { Socket } from 'socket.io-client'
 
-import Home from './components/Home'
-import GameContext, { IGameContextProps } from './gameContext'
-import socketService from './services/SocketService'
+import Home from '@/components/Home'
+import GameContext, { IGameContextProps } from '@/gameContext'
+import socketService from '@/services/SocketService'
 
 function App() {
   const [socket, setSocket] = useState<Socket>()

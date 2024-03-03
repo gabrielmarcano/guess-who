@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import JoinRoom from './JoinRoom'
-import SocketService from '../services/SocketService'
+import JoinRoom from '@/components/JoinRoom'
+import SocketService from '@/services/SocketService'
 
 interface IHome {
   isLoading: boolean
