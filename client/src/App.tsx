@@ -12,7 +12,9 @@ function App() {
   const [isInRoom, setIsInRoom] = useState(false)
 
   useEffect(() => {
-    socketService.connect(`${import.meta.env.VITE_SERVER_IP}:9000`)
+    socketService.connect(
+      `${import.meta.env.VITE_WS_SERVER_IP}:${import.meta.env.VITE_WS_SERVER_PORT}`
+    )
 
     if (socketService.socket) setSocket(socketService.socket)
 

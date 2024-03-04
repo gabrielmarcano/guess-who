@@ -10,7 +10,7 @@ export default ({ mode }) => {
     plugins: [react()],
     server: {
       host: process.env.VITE_SERVER_IP ?? 'localhost',
-      port: 8080,
+      port: Number(process.env.VITE_SERVER_PORT) || 8080,
     },
     resolve: {
       alias: {
