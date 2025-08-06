@@ -8,7 +8,7 @@ interface IHome {
   isLoading: boolean
 }
 
-export default function Home(props: IHome) {
+export default function Home(props: Readonly<IHome>) {
   const navigate = useNavigate()
   const [userName, setUserName] = useState('')
 

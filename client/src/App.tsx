@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import type { Socket } from 'socket.io-client'
 
@@ -23,21 +23,22 @@ function App() {
     }
   }, [])
 
-  const gameContextValue: IGameContextProps = {
-    isInRoom,
-    setIsInRoom,
-  }
+  const gameContextValue: IGameContextProps = useMemo(
+    () => ({
+      isInRoom,
+      setIsInRoom,
+    }),
+    [isInRoom, setIsInRoom]
+  )
 
   return (
     <BrowserRouter>
-      <div>
-        <GameContext.Provider value={gameContextValue}>
-          <Routes>
-            <Route path="/" element={<Home isLoading={!socket} />}></Route>
-            {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
-          </Routes>
-        </GameContext.Provider>
-      </div>
+      <GameContext.Provider value={gameContextValue}>
+        <Routes>
+          <Route path="/" element={<Home isLoading={!socket} />}></Route>
+          {/* <Route path="/chat" element={<ChatPage socket={socket} />}></Route> */}
+        </Routes>
+      </GameContext.Provider>
     </BrowserRouter>
   )
 }
